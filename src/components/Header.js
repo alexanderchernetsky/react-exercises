@@ -13,6 +13,9 @@ const Header = () => (
       <li>
         <Link to="/exercise2">Exercise 2 - react context with hooks</Link>
       </li>
+      <li>
+        <Link to="/exercise3">Exercise 3 - react render props</Link>
+      </li>
     </ul>
   </nav>
 );

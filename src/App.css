@@ -3,12 +3,12 @@
   border: 30px solid brown;
 }
 
-.family {
+.family, .mouse {
   background-color: lightblue;
   border: 30px solid lightblue;
 }
 
-.person {
+.person, .coordinates {
   background-color: lightseagreen;
   border: 30px solid lightseagreen;
 }
