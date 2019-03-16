@@ -3,24 +3,6 @@ import React, { Component } from "react";
 // Create a Context object
 const MyContext = React.createContext();
 
-class MyProvider extends Component {
-  state = {
-    name: "Alex",
-    age: 26,
-    occupation: "frontend-developer"
-  };
-
-  render() {
-    return (
-      // Allows consuming components to subscribe to context changes.
-      // Accepts a value prop to be passed to consuming components that are descendants of this Provider.
-      <MyContext.Provider value={{ state: this.state }}>
-        {this.props.children}
-      </MyContext.Provider>
-    );
-  }
-}
-
 const Family = () => (
   <div className="family">
     <p>Family component</p>
@@ -45,15 +27,23 @@ const Person = () => (
 );
 
 class Exercise1 extends Component {
+  state = {
+    name: "Alex",
+    age: 26,
+    occupation: "frontend-developer"
+  };
+
   render() {
     return (
-      <MyProvider>
+      // Allows consuming components to subscribe to context changes.
+      // Accepts a value prop to be passed to consuming components that are descendants of this Provider.
+      <MyContext.Provider value={{ state: this.state }}>
         <h1>Exercise 1 - react context</h1>
         <div className="app">
           <p>App component</p>
           <Family />
         </div>
-      </MyProvider>
+      </MyContext.Provider>
     );
   }
 }
