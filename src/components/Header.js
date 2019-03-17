@@ -16,6 +16,9 @@ const Header = () => (
       <li>
         <Link to="/exercise3">Exercise 3 - react render props</Link>
       </li>
+      <li>
+        <Link to="/exercise4">Exercise 4 - HOC</Link>
+      </li>
     </ul>
   </nav>
 );
