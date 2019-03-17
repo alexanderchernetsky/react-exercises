@@ -1,16 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Coordinates extends React.Component {
-  render() {
-    const mouse = this.props.mouse;
-    return (
-      <div className="coordinates">
+const Coordinates = ({coord, func}) => {
+  return (
+      <div className="coordinates" onMouseMove={func}>
         <p>Coordinates component</p>
-        Position: left: {mouse.x}, top: {mouse.y}
+        Position left: {coord.x}, top: {coord.y}
       </div>
-    );
-  }
-}
+  )
+};
+
+const Coordinates2 = ({coord, func }) => {
+  return (
+      <div className="coordinates2" onMouseMove={func}>
+        <p>Coordinates-2 component</p>
+        <div>POS left: {coord.x}</div>
+        <div>POS top: {coord.y}</div>
+      </div>
+  )
+};
 
 class Mouse extends React.Component {
   state = { x: 0, y: 0 };
@@ -24,43 +31,27 @@ class Mouse extends React.Component {
 
   render() {
     return (
-      <div className="mouse" onMouseMove={this.handleMouseMove}>
-        <p>Mouse component</p>
+      <div>
         {/*
           Instead of providing a static representation of what <Mouse> renders,
           use the `render` prop to dynamically determine what to render.
         */}
-        {this.props.children(this.state)}
+        {this.props.children(this.state, this.handleMouseMove)}
       </div>
     );
   }
 }
 
-class Exercise3 extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <h1>Exercise 3 - react render props</h1>
-        <div className="app">
-          <p>App component</p>
-          <p>
-            The term “render prop” - a technique for sharing code between React
-            components using a prop whose value is a function.
-          </p>
-          <p>
-            A render prop is a function prop that a component uses to know what
-            to render. It’s important to remember that just because the pattern
-            is called “render props” you don’t have to use a prop named render
-            to use this pattern. In fact, any prop that is a function that a
-            component uses to know what to render is technically a “render
-            prop”.
-          </p>
-          <h1>Move the mouse around!</h1>
-          <Mouse>{mouse => <Coordinates mouse={mouse} />}</Mouse>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
+
+const Exercise3 = () => (
+    <React.Fragment>
+      <h1>Exercise 3 - react render props</h1>
+      <div>
+        <h1>Move the mouse around!</h1>
+        <Mouse>{(coord, func) => <Coordinates coord={coord} func={func}/>}</Mouse>
+        <Mouse>{(coord, func) => <Coordinates2 coord={coord} func={func}/>}</Mouse>
+      </div>
+    </React.Fragment>
+);
 
 export default Exercise3;
