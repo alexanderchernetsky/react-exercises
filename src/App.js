@@ -1,23 +1,25 @@
-import React, { Component } from 'react';
+import React, {Component, Suspense, lazy} from 'react';
+import {BrowserRouter, Route} from "react-router-dom";
 import './App.css';
-import Exercise1 from './components/Exercise1';
-import Exercise2 from './components/Exercise2';
-import Exercise3 from './components/Exercise3';
-import Exercise4 from './components/Exercise4';
 import Header from './components/Header';
 import Home from './components/Home';
-import {BrowserRouter, Route} from "react-router-dom";
+const Exercise1 = lazy(() => import ('./components/Exercise1'));
+const Exercise2 = lazy(() => import ('./components/Exercise2'));
+const Exercise3 = lazy(() => import ('./components/Exercise3'));
+const Exercise4 = lazy(() => import ('./components/Exercise4'));
 
 class App extends Component {
   render() {
     return (
         <BrowserRouter>
-          <Header />
-          <Route exact path='/' component={Home}/>
-          <Route path='/exercise1' component={Exercise1}/>
-          <Route path='/exercise2' component={Exercise2}/>
-          <Route path='/exercise3' component={Exercise3}/>
-          <Route path='/exercise4' component={Exercise4}/>
+          <Suspense fallback={<div>loading...</div>}>
+            <Header/>
+            <Route exact path='/' component={Home}/>
+            <Route path='/exercise1' component={Exercise1}/>
+            <Route path='/exercise2' component={Exercise2}/>
+            <Route path='/exercise3' component={Exercise3}/>
+            <Route path='/exercise4' component={Exercise4}/>
+          </Suspense>
         </BrowserRouter>
     );
   }
